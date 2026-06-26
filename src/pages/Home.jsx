@@ -1,11 +1,12 @@
 import { Link } from "react-router";
 
-export default function Home({ posts }) {
+function Home({ posts }) {
   const recentPosts = posts ? posts.slice(0, 3) : [];
 
   return (
     <section>
       <h2>소개</h2>
+
       <p>React Router로 목록/상세/작성/수정/삭제를 연습하는 미션입니다.</p>
 
       <h3>최신 글</h3>
@@ -15,7 +16,6 @@ export default function Home({ posts }) {
         <ul>
           {recentPosts.map(post => (
             <li key={post.id}>
-              {/* 글 상세 페이지로 이동하는 Link 컴포넌트 활용 */}
               <Link to={`/posts/${post.id}`}>{post.title}</Link>
             </li>
           ))}
@@ -24,3 +24,5 @@ export default function Home({ posts }) {
     </section>
   );
 }
+
+export default Home;
