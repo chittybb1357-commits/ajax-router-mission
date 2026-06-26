@@ -27,7 +27,6 @@ function App() {
       })
       .catch(err => {
         console.error("데이터 로딩 실패:", err);
-
         if (isAlive) {
           setLoaded(true);
         }
@@ -37,10 +36,6 @@ function App() {
       isAlive = false;
     };
   }, []);
-
-  // const handleDelete = id => {
-  //   setPosts(prev => prev.filter(post => post.id !== id));
-  // };
 
   const handleCreate = newPost => {
     setPosts(prev => [newPost, ...prev]);
