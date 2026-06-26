@@ -27,6 +27,7 @@ function App() {
       })
       .catch(err => {
         console.error("데이터 로딩 실패:", err);
+
         if (isAlive) {
           setLoaded(true);
         }
@@ -40,25 +41,26 @@ function App() {
   const handleCreate = newPost => {
     setPosts(prev => [newPost, ...prev]);
   };
-
   const handleUpdate = updatedPost => {
     setPosts(prev => prev.map(post => (post.id === updatedPost.id ? updatedPost : post)));
   };
-
   const handleDelete = id => {
     setPosts(prev => prev.filter(post => post.id !== id));
   };
 
   return (
     <Routes>
-      <Route path="/" element={<Layout loaded={loaded} />}>
-        <Route index element={<Home posts={posts} />} />
-        <Route path="posts" element={<Posts posts={posts} />} />
-        <Route path="posts/new" element={<PostNew onCreate={handleCreate} />} />
-        <Route path="posts/:id" element={<PostDetail posts={posts} onDelete={handleDelete} />} />
-        <Route path="posts/:id/edit" element={<PostEdit posts={posts} onUpdate={handleUpdate} />} />
-        <Route path="*" element={<NotFound />} />
+      <Route element={<Layout loaded={loaded} />}>
+        <Route path="/" element={<Home posts={posts} />} />
+        <Route path="/posts" element={<Posts posts={posts} />} />
+        <Route path="/posts/new" element={<PostNew onCreate={handleCreate} />} />
+        <Route path="/posts/:id" element={<PostDetail posts={posts} onDelete={handleDelete} />} />
+        <Route
+          path="/posts/:id/edit"
+          element={<PostEdit posts={posts} onUpdate={handleUpdate} />}
+        />
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
