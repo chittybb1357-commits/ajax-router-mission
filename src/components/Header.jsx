@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router"; // 환경에 따라 'react-router-dom'
+import { Link, NavLink } from "react-router";
 
 function Header() {
   return (
