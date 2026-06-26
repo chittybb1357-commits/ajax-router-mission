@@ -48,11 +48,7 @@ function PostEdit({ posts, onUpdate }) {
   };
 
   return (
-    <section
-      style={{
-        padding: "20px",
-      }}
-    >
+    <section style={{ padding: "20px" }}>
       <h1
         style={{
           fontSize: "28px",
@@ -74,22 +70,19 @@ function PostEdit({ posts, onUpdate }) {
       >
         <div>
           <label
-            htmlFor="edit-title"
             style={{
               display: "block",
-              fontWeight: "bold",
               marginBottom: "5px",
+              fontWeight: "bold",
             }}
           >
             제목
           </label>
 
           <input
-            id="edit-title"
             type="text"
             value={title}
             onChange={e => setTitle(e.target.value)}
-            placeholder="제목을 입력하세요"
             style={{
               width: "100%",
               padding: "10px",
@@ -103,21 +96,18 @@ function PostEdit({ posts, onUpdate }) {
 
         <div>
           <label
-            htmlFor="edit-content"
             style={{
               display: "block",
-              fontWeight: "bold",
               marginBottom: "5px",
+              fontWeight: "bold",
             }}
           >
             내용
           </label>
 
           <textarea
-            id="edit-content"
             value={content}
             onChange={e => setContent(e.target.value)}
-            placeholder="내용을 입력하세요"
             rows="10"
             style={{
               width: "100%",
@@ -131,12 +121,7 @@ function PostEdit({ posts, onUpdate }) {
           />
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            gap: "10px",
-          }}
-        >
+        <div style={{ display: "flex", gap: "10px" }}>
           <button
             type="submit"
             style={{
