@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link } from "react-router-dom";
 
 function Home({ posts }) {
   const recentPosts = posts ? posts.slice(0, 3) : [];
