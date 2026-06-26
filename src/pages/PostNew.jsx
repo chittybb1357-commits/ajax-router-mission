@@ -10,8 +10,10 @@ function PostNew({ onCreate }) {
 
     if (!title.trim() || !content.trim()) {
       alert("제목과 내용을 모두 입력해 주세요.");
+
       return;
     }
+
     const newId = String(Date.now());
     const today = new Date().toISOString().split("T")[0];
     const newPost = {
@@ -35,7 +37,8 @@ function PostNew({ onCreate }) {
       }}
     >
       <h1
-        style={{
+        s
+        tyle={{
           fontSize: "28px",
           fontWeight: "bold",
           marginBottom: "20px",
@@ -55,18 +58,16 @@ function PostNew({ onCreate }) {
       >
         <div>
           <label
-            htmlFor="title"
             style={{
               display: "block",
-              fontWeight: "bold",
               marginBottom: "5px",
+              fontWeight: "bold",
             }}
           >
             제목
           </label>
 
           <input
-            id="title"
             type="text"
             value={title}
             onChange={e => setTitle(e.target.value)}
@@ -84,18 +85,16 @@ function PostNew({ onCreate }) {
 
         <div>
           <label
-            htmlFor="content"
             style={{
               display: "block",
-              fontWeight: "bold",
               marginBottom: "5px",
+              fontWeight: "bold",
             }}
           >
             내용
           </label>
 
           <textarea
-            id="content"
             value={content}
             onChange={e => setContent(e.target.value)}
             placeholder="내용을 입력하세요"
