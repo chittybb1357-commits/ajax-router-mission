@@ -31,14 +31,9 @@ function PostNew({ onCreate }) {
   };
 
   return (
-    <section
-      style={{
-        padding: "20px",
-      }}
-    >
+    <section style={{ padding: "20px" }}>
       <h1
-        s
-        tyle={{
+        style={{
           fontSize: "28px",
           fontWeight: "bold",
           marginBottom: "20px",
@@ -111,12 +106,7 @@ function PostNew({ onCreate }) {
           />
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            gap: "10px",
-          }}
-        >
+        <div style={{ display: "flex", gap: "10px" }}>
           <button
             type="submit"
             style={{
