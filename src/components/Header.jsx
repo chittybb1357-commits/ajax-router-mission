@@ -9,7 +9,9 @@ function Header() {
 
       <nav style={{ display: "flex", gap: "10px" }}>
         <NavLink to="/">Home</NavLink>
+
         <NavLink to="/posts">Posts</NavLink>
+
         <NavLink to="/posts/new">Write</NavLink>
       </nav>
     </header>
