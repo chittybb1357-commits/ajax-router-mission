@@ -2,7 +2,6 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "./components/Layout.jsx";
-import Header from "./components/Header.jsx";
 
 import Home from "./pages/Home.jsx";
 import Posts from "./pages/Posts.jsx";
@@ -16,16 +15,27 @@ function App() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
+    let isAlive = true;
+
     fetch("./data/blog.json")
       .then(res => res.json())
       .then(data => {
-        setPosts(data);
-        setLoaded(true);
+        if (isAlive) {
+          setPosts(data);
+          setLoaded(true);
+        }
       })
       .catch(err => {
         console.error("데이터 로딩 실패:", err);
-        setLoaded(true);
+
+        if (isAlive) {
+          setLoaded(true);
+        }
       });
+
+    return () => {
+      isAlive = false;
+    };
   }, []);
 
   const handleDelete = id => {
