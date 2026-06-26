@@ -38,6 +38,18 @@ function App() {
     };
   }, []);
 
+  // const handleDelete = id => {
+  //   setPosts(prev => prev.filter(post => post.id !== id));
+  // };
+
+  const handleCreate = newPost => {
+    setPosts(prev => [newPost, ...prev]);
+  };
+
+  const handleUpdate = updatedPost => {
+    setPosts(prev => prev.map(post => (post.id === updatedPost.id ? updatedPost : post)));
+  };
+
   const handleDelete = id => {
     setPosts(prev => prev.filter(post => post.id !== id));
   };
@@ -47,9 +59,9 @@ function App() {
       <Route path="/" element={<Layout loaded={loaded} />}>
         <Route index element={<Home posts={posts} />} />
         <Route path="posts" element={<Posts posts={posts} />} />
-        <Route path="posts/new" element={<PostNew />} />
+        <Route path="posts/new" element={<PostNew onCreate={handleCreate} />} />
         <Route path="posts/:id" element={<PostDetail posts={posts} onDelete={handleDelete} />} />
-        <Route path="posts/:id/edit" element={<PostEdit posts={posts} />} />
+        <Route path="posts/:id/edit" element={<PostEdit posts={posts} onUpdate={handleUpdate} />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
