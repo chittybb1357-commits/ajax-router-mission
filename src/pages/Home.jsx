@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom";
 
 function Home({ posts }) {
-  const recentPosts = posts ? posts.slice(0, 3) : [];
+  const recentPosts = posts
+    ? [...posts].sort((a, b) => new Date(b.date) - new Date(a.date)).slice(0, 3)
+    : [];
 
   return (
     <section>
