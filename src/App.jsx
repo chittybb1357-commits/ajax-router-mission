@@ -19,7 +19,7 @@ function App() {
 
     async function fetchData() {
       try {
-        const res = await fetch("/data/blog.json", {
+        const res = await fetch(`${import.meta.env.BASE_URL}/data/blog.json`, {
           signal: controller.signal,
         });
 
