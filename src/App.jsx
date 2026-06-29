@@ -9,27 +9,35 @@ function App() {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    let alive = true; // 상품조회 시작..열일중...
+    // let alive = true; // 상품조회 시작..열일중...
+    const controller = new AbortController(); // 초기화
 
-    try {
-      fetch("/data/blog.json")
-        .then(res => res.json())
-        .then(result => {
-          if (alive) {
-            setPosts(result);
-            setLoaded(true);
-          }
+    async function fetchData() {
+      try {
+        const res = await fetch("/data/blog.json", {
+          signal: controller.signal,
         });
-    } catch (e) {
-      console.error(e);
 
-      if (alive) setPosts([]); // 에러시 목록 비움
-    } finally {
-      if (alive) setLoaded(true);
+        if (!res.ok) throw new Error("메시지");
+
+        const data = await res.json();
+
+        setPosts(data);
+      } catch (e) {
+        console.error(e);
+
+        setPosts([]); // 에러시 목록 비움
+      } finally {
+        setLoaded(true);
+      }
     }
+    fetchData();
+
+    console.log(posts);
 
     return () => {
-      alive = false;
+      // alive = false;
+      controller.abort();
     }; // 정리함수
   }, []);
 
