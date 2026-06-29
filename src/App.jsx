@@ -11,14 +11,22 @@ function App() {
   useEffect(() => {
     let alive = true; // 상품조회 시작..열일중...
 
-    fetch("/data/blog.json")
-      .then(res => res.json())
-      .then(result => {
-        if (alive) {
-          setPosts(result);
-          setLoaded(true);
-        }
-      });
+    try {
+      fetch("/data/blog.json")
+        .then(res => res.json())
+        .then(result => {
+          if (alive) {
+            setPosts(result);
+            setLoaded(true);
+          }
+        });
+    } catch (e) {
+      console.error(e);
+
+      if (alive) setPosts([]); // 에러시 목록 비움
+    } finally {
+      if (alive) setLoaded(true);
+    }
 
     return () => {
       alive = false;
