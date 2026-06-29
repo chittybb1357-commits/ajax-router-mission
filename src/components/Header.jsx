@@ -1,18 +1,25 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router";
+import styles from "./Header.module.css";
 
 function Header() {
   return (
-    <header>
+    <header className={styles.Header}>
       <h1>
         <Link to="/">Router Mission Blog</Link>
       </h1>
 
-      <nav style={{ display: "flex", gap: "10px" }}>
-        <NavLink to="/">Home</NavLink>
+      <nav className={styles.nav}>
+        <NavLink to="/" className={({ isActive }) => (isActive ? styles.open : undefined)}>
+          Home
+        </NavLink>
 
-        <NavLink to="/posts">Posts</NavLink>
+        <NavLink to="/posts" className={({ isActive }) => (isActive ? styles.open : undefined)}>
+          Posts
+        </NavLink>
 
-        <NavLink to="/posts/new">Write</NavLink>
+        <NavLink to="/posts/new" className={({ isActive }) => (isActive ? styles.open : undefined)}>
+          Write
+        </NavLink>
       </nav>
     </header>
   );
