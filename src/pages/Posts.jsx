@@ -13,7 +13,7 @@ function Posts({ posts }) {
       ) : (
         <ul>
           {sorted.map(p => (
-            <li>
+            <li key={p.id}>
               <Link to={`/post/${p.id}`}>{p.title}</Link>
             </li>
           ))}
