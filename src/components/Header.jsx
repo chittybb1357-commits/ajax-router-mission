@@ -1,9 +1,9 @@
-import { NavLink } from "react-router";
+import { NavLink, Link } from "react-router";
 import styles from "./Header.module.css";
 
 function Header() {
   return (
-    <header className={styles.Header}>
+    <header className={styles.header}>
       <h1>
         <Link to="/">Router Mission Blog</Link>
       </h1>
