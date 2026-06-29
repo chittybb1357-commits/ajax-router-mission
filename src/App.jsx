@@ -16,10 +16,13 @@ function App() {
       .then(result => {
         if (alive) {
           setPosts(result);
+          setLoaded(true);
         }
       });
 
-    return () => {}; //정리함수
+    return () => {
+      alive = false;
+    }; // 정리함수
   }, []);
 
   return (
