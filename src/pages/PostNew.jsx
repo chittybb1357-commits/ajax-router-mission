@@ -1,9 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import styles from "./PostNew.module.css";
 
 function PostNew({ onCreate }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+
+  let navigate = useNavigate();
+
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -11,18 +15,23 @@ function PostNew({ onCreate }) {
     const trimmedContent = content.trim();
 
     if (!trimmedTitle || !trimmedContent) {
-      alert("제목과 내용을 모두를 입력해주세요!");
+      alert("제목과 내용을 모두를 입력해주세요");
+
       return;
     }
-    onCreate({
+
+    const newId = onCreate({
       title: title,
       content: content,
     });
+
+    navigate(`/post/${newId}`);
   };
 
   return (
     <>
       <h2>글 작성</h2>
+
       <form action="" className={styles.form} onSubmit={handleSubmit}>
         <input
           type="text"
@@ -32,6 +41,7 @@ function PostNew({ onCreate }) {
             setTitle(e.target.value);
           }}
         />
+
         <textarea
           name=""
           id=""
@@ -41,6 +51,7 @@ function PostNew({ onCreate }) {
             setContent(e.target.value);
           }}
         ></textarea>
+
         <button>등록</button>
       </form>
     </>
